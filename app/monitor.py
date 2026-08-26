@@ -1,6 +1,17 @@
 import requests
 import time
 
+# Simulated Database
+userdata = {"Alice":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo"]},
+            "Bob":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo"]},
+            "Charlie":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo"]}}
+
+def monitor(user: str):
+    uptime_info = {}
+    for url in userdata[user]["urls"]:
+        uptime_info[url] = check_url(url)
+    return uptime_info
+
 def check_url(url):
     website_info = {"url": url, "status": "DOWN", "status_code": None, "response_time_ms": None, "error": None}
     try:
