@@ -1,5 +1,6 @@
 import requests
 import time
+from fastapi import HTTPException
 
 # Simulated Database
 
@@ -8,7 +9,12 @@ userdata = {"Alice":{"urls": ["https://github.com/JamesParkinDev", "https://www.
             "Charlie":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo"]}}
 
 def monitor(user: str):
+
+    if user not in userdata:
+        raise HTTPException(status_code=404, detail="User not found")
+
     uptime_info = {}
+
     for url in userdata[user]["urls"]:
         uptime_info[url] = check_url(url)
     return uptime_info
