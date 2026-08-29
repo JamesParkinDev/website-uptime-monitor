@@ -20,7 +20,12 @@ def monitor(user: str):
     return uptime_info
 
 def check_url(url):
-    website_info = {"url": url, "status": "DOWN", "status_code": None, "response_time_ms": None, "error": None}
+    website_info = {"url": url,
+                    "status": "DOWN",
+                    "status_code": None,
+                    "response_time_ms": None,
+                    "error": None
+                    }
     try:
         # measure response time in nanoseconds and convert to milliseconds
         start = time.perf_counter_ns()
