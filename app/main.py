@@ -1,11 +1,19 @@
-from fastapi import FastAPI
-from app.monitor import check_url, monitor
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
+from app.monitor import monitor
 
 app = FastAPI()
 
-@app.get("/")
-def home():
-    return {"message": "Hello World"}
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
+templates = Jinja2Templates(directory="app/templates")
+
+@app.get("/", response_class=HTMLResponse)
+def home(request: Request):
+    return templates.TemplateResponse(request=request, name="/index.html")
 
 @app.get("/monitor/{user}")
 def check_uptimes(user: str):
