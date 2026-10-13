@@ -1,3 +1,4 @@
+alert("app.js loaded!");
 const userSelect = document.getElementById("user-select");
 const confirmBtn = document.getElementById("confirm-btn");
 
@@ -15,8 +16,9 @@ confirmBtn.addEventListener("click", () => {
             for (const [url, info] of Object.entries(data)) {
                 sites.innerHTML += `
                 <div class="card">
-                    <p>URL: ${url}</p>
-                    <p>Status: ${info.status}</p>
+                    <p class="display_name"> Name: ${info.name}</p>
+                    <p class="url">URL: ${url}</p>
+                    <p class="status">Status: ${info.status}</p>
                 </div>`;
             }
 
