@@ -4,7 +4,7 @@ from fastapi import HTTPException
 
 # Simulated Database
 
-userdata = {"Alice":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo"]},
+userdata = {"Alice":{"urls": ["https://github.com/JamesParkinDev"]},
             "Bob":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo"]},
             "Charlie":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo"]}}
 
