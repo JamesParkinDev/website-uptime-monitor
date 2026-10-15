@@ -11,6 +11,8 @@ userdata = {"Alice":{"urls": ["https://github.com/JamesParkinDev"]},
 
 # TODO: Add get_favicon feature to display in website card
 
+# TODO: Add get_favicon feature to display in website card
+
 def monitor(user: str):
 
     if user not in userdata:
