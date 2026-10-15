@@ -1,8 +1,10 @@
 alert("app.js loaded!");
 const userSelect = document.getElementById("user-select");
-const confirmBtn = document.getElementById("confirm-btn");
+const refreshBtn = document.getElementById("refresh-btn");
 
-confirmBtn.addEventListener("click", () => {
+// TODO: Add functionality to the Add Website button
+
+refreshBtn.addEventListener("click", () => {
     const user = userSelect.value;
     fetch(`/monitor/${user}`)
         .then(response => response.json())
@@ -14,12 +16,26 @@ confirmBtn.addEventListener("click", () => {
             sites.innerHTML = "";
 
             for (const [url, info] of Object.entries(data)) {
-                sites.innerHTML += `
-                <div class="card">
-                    <p class="display_name"> Name: ${info.name}</p>
-                    <p class="url">URL: ${url}</p>
-                    <p class="status">Status: ${info.status}</p>
-                </div>`;
+                if (info.status === "UP") {
+                    // formatting for active website
+                    sites.innerHTML += `    
+                    <div class="card_up">
+                        <p class="display_name"> Name: ${info.name}</p>
+                        <p class="url">URL: ${url}</p>
+                        <p class="status">Status: ${info.status}</p>
+                        <p class="ping">Ping: ${info.response_time_ms}</p>
+                    </div>`;
+                } else {
+                    // alternate formatting for inactive or unavailable website
+                    sites.innerHTML += `
+                    <div class="card_down">
+                        <p class="display_name"> Name: ${info.name}</p>
+                        <p class="url">URL: ${url}</p>
+                        <p class="status">Status: ${info.status}</p>
+                        <p class="error">Error Type: ${info.error}</p>
+                    </div>`;
+                }
+
             }
 
             document.getElementById("username").textContent = user;

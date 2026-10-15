@@ -6,7 +6,10 @@ from fastapi import HTTPException
 
 userdata = {"Alice":{"urls": ["https://github.com/JamesParkinDev"]},
             "Bob":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo"]},
-            "Charlie":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo"]}}
+            "Charlie":{"urls": ["https://github.com/JamesParkinDev", "https://www.youtube.com/watch?v=rvFsGRvj9jo", "https://www.foo.bar/"]},
+            "David":{"urls": ["https://FinnyCraft.mcserv.fun", "https://mc.hypixel.net"]},}
+
+# TODO: Add get_favicon feature to display in website card
 
 def monitor(user: str):
 
@@ -24,7 +27,8 @@ def check_url(url):
                     "status": "DOWN",
                     "status_code": None,
                     "response_time_ms": None,
-                    "error": None
+                    "error": None,
+                    "name": url.lstrip("https:").lstrip("/")
                     }
     try:
         # measure response time in nanoseconds and convert to milliseconds
